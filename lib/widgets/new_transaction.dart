@@ -17,12 +17,14 @@ class _NewTransactionState extends State<NewTransaction> {
   void submitData() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
-    if(enteredTitle.isEmpty || enteredAmount<=0){
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
       return;
     }
     widget.addTx(
-      enteredTitle,enteredAmount
+      enteredTitle,
+      enteredAmount,
     );
+    Navigator.of(context).pop();
   }
 
   @override
@@ -39,7 +41,6 @@ class _NewTransactionState extends State<NewTransaction> {
 //                    },
               controller: titleController,
               onSubmitted: (_) => submitData(),
-
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
@@ -51,7 +52,7 @@ class _NewTransactionState extends State<NewTransaction> {
             FlatButton(
               child: Text('Add Transaction'),
               textColor: Colors.purple,
-              onPressed: submitData ,
+              onPressed: submitData,
             ),
           ],
         ),
